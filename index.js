@@ -1,10 +1,11 @@
 (() => {
+  const NE = [-27.3804972 + 0.1, -48.3585929 + 0.1]
+  const SW = [-27.8390937 - 0.1, -48.5815815 - 0.1]
   const map = L.map('map', {
-    center: [-27.6133, -48.4861],
-    minZoom: 11,
+    center: [(NE[0] + SW[0]) / 2, (NE[1] + SW[1]) / 2],
+    maxBounds: [NE, SW],
     zoom: 11
   })
-  map.setMaxBounds(map.getBounds())
 
   const addToMap = ({ marker }) => marker.addTo(map)
   const removeFromMap = ({ marker }) => marker.removeFrom(map)
