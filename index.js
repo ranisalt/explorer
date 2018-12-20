@@ -105,15 +105,5 @@
       .map(list => lists.appendChild(list))
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    loadMap()
-    // const leaflet = document.createElement('script')
-    // leaflet.async = true
-    // leaflet.crossorigin = 'anonymous'
-    // leaflet.integrity = 'sha256-tfcLorv/GWSrbbsn6NVgflWp1YOmTjyJ8HWtfXaOaJc='
-    // leaflet.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/leaflet.js'
-
-    // leaflet.addEventListener('load', loadMap)
-    // document.body.appendChild(leaflet)
-  })
+  document.addEventListener('DOMContentLoaded', loadMap)
 })()
