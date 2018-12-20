@@ -53,11 +53,11 @@
     return li
   }
 
-  const createList = ({ name, beaches }) => {
-    const root = document.createElement('div')
+  const createList = ({ id, name, beaches }) => {
+    const root = document.createElement('details')
     root.classList.add('column')
 
-    const title = document.createElement('p')
+    const title = document.createElement('summary')
     title.appendChild(document.createTextNode(name))
     title.classList.add('subtitle')
     root.append(title)
