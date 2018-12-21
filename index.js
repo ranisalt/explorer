@@ -103,6 +103,9 @@
     groupBy(beaches, regions)
       .map(createList)
       .map(list => lists.appendChild(list))
+
+    const modal = document.querySelector('.modal')
+    modal.classList.remove('is-active')
   }
 
   document.addEventListener('DOMContentLoaded', loadMap)
