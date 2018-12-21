@@ -15,7 +15,16 @@
       .list-item { border: 0!important }
       .modal { background: #fff; z-index: 1000 }
       .modal-content { overflow: hidden; width: auto }
+      .progress-wrapper { position: relative }
 
+      #progress-value {
+        font-size: calc(1.5rem / 1.5);
+        line-height: 1.5rem;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+      }
       .spinner {
         animation: spin 1s linear infinite;
         border: 16px solid transparent;
@@ -43,7 +52,10 @@
       <div class="column">
         <div id="lists"></div>
 
-        <progress class="progress is-large is-primary"></progress>
+        <div class="progress-wrapper is-text-centered">
+          <progress class="progress is-large is-primary"></progress>
+          <span id="progress-value"></span>
+        </div>
       </div>
     </div>
 

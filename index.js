@@ -11,8 +11,13 @@
   const removeFromMap = ({ marker }) => marker.removeFrom(map)
 
   const progress = document.querySelector('.progress')
+  const progressValue = document.getElementById('progress-value')
   const history = new Set(JSON.parse(localStorage.getItem('history') || '[]'))
-  progress.value = history.size
+
+  const updateProgress = current => {
+    progress.value = current
+    progress.innerText = progressValue.innerText = `${current}/${progress.max} (${(current / progress.max * 100).toFixed()}%)`
+  }
 
   const hasVisited = ({ relation }) => history.has(relation)
   const toggleVisited = ({ marker, relation }) => {
@@ -23,7 +28,7 @@
       history.add(relation)
       addToMap({ marker })
     }
-    progress.value = history.size
+    updateProgress(history.size)
 
     if (history.size !== 0) {
       localStorage.setItem('history', JSON.stringify([...history.values()]))
@@ -98,6 +103,7 @@
     beaches.filter(hasVisited).forEach(addToMap)
 
     progress.max = beaches.length
+    updateProgress(history.size)
 
     const lists = document.getElementById('lists')
     groupBy(beaches, regions)
