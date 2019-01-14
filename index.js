@@ -1,14 +1,13 @@
 (() => {
-  const NE = [-27.3804972 + 0.1, -48.3585929 + 0.1]
-  const SW = [-27.8390937 - 0.1, -48.5815815 - 0.1]
-  const map = L.map('map', {
-    center: [(NE[0] + SW[0]) / 2, (NE[1] + SW[1]) / 2],
-    maxBounds: [NE, SW],
-    zoom: 11
+  const avg = row => row.reduce((acc, val) => acc + val) / row.length
+  const zip = rows => rows[0].map((_, col) => rows.map(row => row[col]))
+
+  const createMap = ({ maxBounds, zoom }) => L.map('map', {
+    center: zip(maxBounds).map(avg), maxBounds, zoom,
   })
 
-  const addToMap = ({ marker }) => marker.addTo(map)
-  const removeFromMap = ({ marker }) => marker.removeFrom(map)
+  const addToMap = (map, { marker }) => marker.addTo(map)
+  const removeFromMap = (map, { marker }) => marker.removeFrom(map)
 
   const progress = document.querySelector('.progress')
   const progressValue = document.getElementById('progress-value')
@@ -20,13 +19,13 @@
   }
 
   const hasVisited = ({ relation }) => history.has(relation)
-  const toggleVisited = ({ marker, relation }) => {
+  const toggleVisited = (map, { marker, relation }) => {
     if (hasVisited({ relation })) {
       history.delete(relation)
-      removeFromMap({ marker })
+      removeFromMap(map, { marker })
     } else {
       history.add(relation)
-      addToMap({ marker })
+      addToMap(map, { marker })
     }
     updateProgress(history.size)
 
@@ -37,7 +36,7 @@
     }
   }
 
-  const createCheckbox = ({ name, marker, relation }) => {
+  const createCheckbox = (map, { name, marker, relation }) => {
     const li = document.createElement('li')
     li.classList.add('is-inline-flex', 'list-item')
 
@@ -48,8 +47,8 @@
     input.checked = hasVisited({ relation })
     input.type = 'checkbox'
     input.addEventListener('change', () => {
-      toggleVisited({ marker, relation })
-      li.parentNode.replaceChild(createCheckbox({ name, marker, relation }), li)
+      toggleVisited(map, { marker, relation })
+      li.parentNode.replaceChild(createCheckbox(map, { name, marker, relation }), li)
     })
 
     label.appendChild(input)
@@ -58,7 +57,7 @@
     return li
   }
 
-  const createList = ({ id, name, beaches }) => {
+  const createList = (map, { id, name, beaches }) => {
     const root = document.createElement('details')
     root.classList.add('column')
 
@@ -69,7 +68,7 @@
 
     const ul = document.createElement('ul')
     for (let beach of beaches) {
-      ul.appendChild(createCheckbox(beach))
+      ul.appendChild(createCheckbox(map, beach))
     }
     root.appendChild(ul)
     root.appendChild(document.createElement('br'))
@@ -90,24 +89,26 @@
   }
 
   const loadMetadata = async () => {
-    const response = await fetch('metadata.json')
+    const response = await fetch('floripa.json')
     return response.json()
   }
 
   const loadMap = async () => {
+    const { coordinates, regions, beaches } = await loadMetadata()
+
+    const map = createMap(coordinates)
     const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
     tileLayer.addTo(map)
 
-    const { regions, beaches } = await loadMetadata()
     beaches.forEach(createMarker)
-    beaches.filter(hasVisited).forEach(addToMap)
+    beaches.filter(hasVisited).forEach(beach => addToMap(map, beach))
 
     progress.max = beaches.length
     updateProgress(history.size)
 
     const lists = document.getElementById('lists')
     groupBy(beaches, regions)
-      .map(createList)
+      .map(region => createList(map, region))
       .map(list => lists.appendChild(list))
 
     const modal = document.querySelector('.modal')

@@ -1,4 +1,11 @@
 {
+  "coordinates": {
+    "maxBounds": [
+      [-27.2804972, -48.2585929],
+      [-27.9390937, -48.6815815]
+    ],
+    "zoom": 11
+  },
   "regions": [
     { "id": 0, "name": "Continente" },
     { "id": 1, "name": "Leste da Ilha" },
