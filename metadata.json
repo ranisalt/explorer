@@ -8,7 +8,7 @@
   ],
   "beaches": [
     { "name": "Armação", "latlng": [-27.74264, -48.5076], "region": 2, "relation": 6442370 },
-    { "name": "Açores", "latlng": [-27.7858, -48.5188], "region": 2, "relation": 6464167 },
+    { "name": "Açores", "latlng": [-27.7831494, -48.5251522], "region": 2, "relation": 6186372812 },
     { "name": "Barra da Lagoa", "latlng": [-27.57132, -48.42577], "region": 1, "relation": 4199191 },
     { "name": "Bom Abrigo", "latlng": [-27.61175, -48.59781], "region": 0, "relation": 6464173 },
     { "name": "Brava", "latlng": [-27.39798, -48.41314], "region": 3, "relation": 6436272 },
@@ -17,7 +17,7 @@
     { "name": "Caieira", "latlng": [-27.81701, -48.56415], "region": 2, "relation": 7563867 },
     { "name": "Campeche", "latlng": [-27.6814, -48.47889], "region": 2, "relation": 6455060 },
     { "name": "Canajurê", "latlng": [-27.43338, -48.48165], "region": 3, "relation": 7966689 },
-    { "name": "Canasvieiras", "latlng": [-27.4268, -48.4638], "region": 3, "relation": 6436280 },
+    { "name": "Canasvieiras", "latlng": [-27.42694, -48.45546], "region": 3, "relation": 6436280 },
     { "name": "Daniela", "latlng": [-27.4489, -48.5357], "region": 3, "relation": 6464169 },
     { "name": "Forte", "latlng": [-27.43318, -48.51949], "region": 3, "relation": 7067388 },
     { "name": "Galheta", "latlng": [-27.59274, -48.42546], "region": 1, "relation": 6411203 },
