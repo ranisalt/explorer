@@ -37,6 +37,8 @@
     { "name": "Moçambique", "latlng": [-27.5241, -48.4053], "region": 1, "relation": 4278016 },
     { "name": "Naufragados", "latlng": [-27.83402, -48.56335], "region": 2, "relation": 6447784 },
     { "name": "Palmeiras", "latlng": [-27.61605, -48.59606], "region": 0, "relation": 8311414 },
+    { "name": "Pântano do Sul", "latlng": [-27.7798797, -48.5072329], "region": 2, "relation": 416646678 },
+    { "name": "Ponta das Aranhas", "latlng": [-27.4803578, -48.3763298], "region": 3, "relation": 6199661887 },
     { "name": "Ponta das Canas", "latlng": [-27.39603, -48.43448], "region": 3, "relation": 4453499 },
     { "name": "Pontal", "latlng": [-27.45638, -48.54435], "region": 3, "relation": 6464174 },
     { "name": "Prainha", "latlng": [-27.57472, -48.42129], "region": 1, "relation": 165083427 },
